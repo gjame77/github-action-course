@@ -10,10 +10,16 @@ jobs:
         id: uuid
         run: echo "uuid=$(uuidgen)" >> "$GITHUB_OUTPUT"
 
-      - name: Print UUID
+      - name: Print UUID and Save to File
         run: |
-          echo "UUID: ${{ steps.uuid.outputs.uuid }}"
+          echo "출력값: ${{ steps.uuid.outputs.uuid }}"
           echo "${{ steps.uuid.outputs.uuid }}" > uuid.txt
+
+      - name: 확인: uuid.txt 존재 여부 및 내용
+        run: |
+          ls -l
+          echo "--- uuid.txt 내용 ---"
+          cat uuid.txt || echo "uuid.txt 없음"
 
       - name: Upload UUID
         uses: actions/upload-artifact@v3.1.3
@@ -29,8 +35,11 @@ jobs:
         uses: actions/download-artifact@v3.1.3
         with:
           name: uuid
-          path: .  # 현재 디렉토리에 다운로드
+          path: .
+
+      - name: 디렉토리 구조 확인
+        run: find . -type f
 
       - name: Print UUID
         run: |
-          echo "UUID: $(cat uuid/uuid.txt)"
+          echo "UUID: $(cat uuid.txt)"
