@@ -25,6 +25,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: uuid
+        path: .
     - name: Print UUID
       run: |
         echo "UUID: $(cat uuid.txt)"
