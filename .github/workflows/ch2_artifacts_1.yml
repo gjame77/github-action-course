@@ -16,7 +16,7 @@ jobs:
           echo "${{ steps.uuid.outputs.uuid }}" > uuid.txt
 
       - name: Upload UUID
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.3
         with:
           name: uuid
           path: uuid.txt
@@ -26,7 +26,7 @@ jobs:
     needs: job-1
     steps:
       - name: Download UUID
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v3.1.3
         with:
           name: uuid
           path: .  # 현재 디렉토리에 다운로드
