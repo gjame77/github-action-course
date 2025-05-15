@@ -33,4 +33,4 @@ jobs:
 
       - name: Print UUID
         run: |
-          echo "UUID: $(cat uuid.txt)"
+          echo "UUID: $(cat uuid/uuid.txt)"
