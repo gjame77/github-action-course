@@ -13,13 +13,7 @@ jobs:
       - name: Print UUID and Save to File
         run: |
           echo "출력값: ${{ steps.uuid.outputs.uuid }}"
-          echo "${{ steps.uuid.outputs.uuid }}" > uuid.txt
-
-      - name: verify
-        run: |
-          ls -l
-          echo "--- uuid.txt 내용 ---"
-          cat uuid.txt || echo "uuid.txt 없음"
+          echo "${{ steps.uuid.outputs.uuid }}" > ~/uuid.txt
 
       - name: Upload UUID
         uses: actions/upload-artifact@v3
@@ -42,4 +36,4 @@ jobs:
 
       - name: Print UUID
         run: |
-          echo "UUID: $(cat uuid.txt)"
+          echo "UUID: $(cat ~/uuid.txt)"
