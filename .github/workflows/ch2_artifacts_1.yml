@@ -8,12 +8,10 @@ jobs:
     steps:
       - name: Get Random UUID
         id: uuid
-        run: echo "uuid=$(uuidgen)" >> "$GITHUB_OUTPUT"
+        run: echo "uuid=$(uuidgen)" >> $GITHUB_OUTPUT
 
-      - name: Print UUID and Save to File
-        run: |
-          echo "출력값: ${{ steps.uuid.outputs.uuid }}"
-          echo "${{ steps.uuid.outputs.uuid }}" > ~/uuid.txt
+      - name: Save UUID to File
+        run: echo "${{ steps.uuid.outputs.uuid }}" > uuid.txt
 
       - name: Upload UUID
         uses: actions/upload-artifact@v3
@@ -31,9 +29,6 @@ jobs:
           name: uuid
           path: .
 
-      - name: 디렉토리 구조 확인
-        run: find . -type f
-
       - name: Print UUID
         run: |
-          echo "UUID: $(cat ~/uuid.txt)"
+          echo "UUID: $(cat uuid.txt)"
